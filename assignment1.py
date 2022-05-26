@@ -69,6 +69,23 @@ plt.xlabel('Year')
 plt.ylabel('Total Revenue')
 plt.show()
 
-sns.catplot(x='Year', y='Revenue (Millions)', kind='box', data=df)
+sns.catpl8ot(x='Year', y='Revenue (Millions)', kind='box', data=df)
 plt.show()
+ 
+    
+   """MODELLO PREVISIONE INCASSI"""
+    """importo le colonne con i valori numerici che sono le variabili del dataset e assegno a x una lista di 1000 elementi, ciascuno con le 3 variabili scelte"""
+    import numpy as np
+    from sklearn.linear_model import LinearRegression
+    
+   x= df[['Rating', 'Votes','Metascore']][:]
+   y= df['Revenue (Millions)'][:]                         
+   model = LinearRegression().fit(x, y)
+   r_sq = model.score(x, y)
+   print(f"coefficient of determination: {r_sq}")
+   print(f"intercept: {model.intercept_}")
+   print(f"coefficients: {model.coef_}")
+   y_pred = model.predict(x)
+   print(f"predicted response:\n{y_pred}")
+   
 
